@@ -1,8 +1,10 @@
 package com.harman.zrzotkiewicz.harmanfoostracker;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +13,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.AbsoluteLayout;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+
+import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Refreshing stats...", Snackbar.LENGTH_SHORT)
+                Snackbar.make(view, "Syncing to database...", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }
         });
@@ -59,10 +66,17 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_add_player) {
-            // Handle the camera action
-        } else if (id == R.id.nav_leaderboards) {
+        FrameLayout x;
+        View child;
+        if (id == R.id.nav_start_game) {
+            x = (FrameLayout)findViewById(R.id.layout_container);
+            child = getLayoutInflater().inflate(R.layout.content_main, null);
+            x.addView(child);
+        } else if (id == R.id.nav_add_player) {
+            x = (FrameLayout)findViewById(R.id.layout_container);
+            child = getLayoutInflater().inflate(R.layout.content_add_player, null);
+            x.addView(child);
+        }else if (id == R.id.nav_leaderboards) {
 
         } else if (id == R.id.nav_global_stats) {
 
