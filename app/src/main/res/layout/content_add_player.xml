@@ -5,141 +5,166 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_light">
 
-    <TextView
-        android:id="@+id/textView_height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView_weight"
-        android:layout_below="@+id/spinner_jerseyNumber"
-        android:text="@string/height_in"
-        android:textColor="@android:color/black"
-        android:textSize="17sp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textView_jerseyNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView_height"
-        android:layout_below="@+id/editText_playerName"
-        android:text="@string/jersey_number"
-        android:textColor="@android:color/black"
-        android:textSize="17sp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textView_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView_handedness"
-        android:layout_below="@+id/editText_height"
-        android:text="@string/weight_lbs"
-        android:textColor="@android:color/black"
-        android:textSize="17sp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textView_handedness"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView_bio"
-        android:layout_below="@+id/editText_weight"
-        android:text="@string/handedness"
-        android:textColor="@android:color/black"
-        android:textSize="17sp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textView_bio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/spinner_handedness"
-        android:layout_marginStart="29dp"
-        android:text="@string/player_biography"
-        android:textColor="@android:color/black"
-        android:textSize="17sp"
-        android:textStyle="italic" />
-
-    <EditText
-        android:id="@+id/editText_playerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:ignore="LabelFor"
-        android:layout_below="@+id/textView_playerName"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:id="@+id/textView_playerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView_jerseyNumber"
-        android:layout_marginTop="61dp"
-        android:text="@string/player_name"
-        android:textColor="@android:color/black"
-        android:textSize="17sp"
-        android:textStyle="italic" />
-
-    <Spinner
-        android:id="@+id/spinner_jerseyNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_jerseyNumber"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:id="@+id/editText_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:layout_below="@+id/textView_weight"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        tools:ignore="LabelFor" />
+        android:layout_above="@+id/button_submit">
 
-    <EditText
-        android:id="@+id/editText_height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView_height"
-        android:ems="10"
-        android:inputType="number"
-        tools:ignore="LabelFor" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/black"
+            android:orientation="vertical"
+            android:scrollIndicators="right"
+            android:scrollbarSize="20sp"
+            android:showDividers="beginning|middle|end">
 
-    <Spinner
-        android:id="@+id/spinner_handedness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView_handedness" />
+            <TextView
+                android:id="@+id/textView_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="Player Name"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic" />
 
-    <EditText
-        android:id="@+id/editText_bio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView_bio"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:textSize="10sp"
-        tools:ignore="LabelFor,SmallSp" />
+            <EditText
+                android:id="@+id/editText_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/button_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_bio"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="@string/submit"
-        android:textAllCaps="false" />
+            <TextView
+                android:id="@+id/textView_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="Date of Birth"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic" />
+
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp" />
+
+            <TextView
+                android:id="@+id/textView_hometown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="Hometown"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/editText_hometown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView_bio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="Biography"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/editText_bio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="8sp" />
+
+            <TextView
+                android:id="@+id/textView_jerseyNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="Jersey Number"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic" />
+
+            <Spinner
+                android:id="@+id/spinner_jerseyNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView_handedness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="Handedness"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic" />
+
+            <Spinner
+                android:id="@+id/spinner_handedness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="Height (in)"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/editText_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="Weight (lbs)"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/editText_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/button_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:text="@string/submit"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

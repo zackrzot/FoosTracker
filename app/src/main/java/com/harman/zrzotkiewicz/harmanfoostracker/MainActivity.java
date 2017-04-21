@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.AbsoluteLayout;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = new StartGameFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentFrame, fragment);
-        transaction.addToBackStack(null);
+        //transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -73,39 +75,24 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Fragment fragment = new Fragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (id == R.id.nav_start_game) {
-            Fragment fragment = new StartGameFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentFrame, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            fragment = new StartGameFragment();
         } else if (id == R.id.nav_add_player) {
-            Fragment fragment = new AddPlayerFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentFrame, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            fragment = new AddPlayerFragment();
         }else if (id == R.id.nav_leaderboards) {
-            Fragment fragment = new LeaderboardsFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentFrame, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            fragment = new LeaderboardsFragment();
         } else if (id == R.id.nav_global_stats) {
-            Fragment fragment = new GlobalStatsFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentFrame, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            fragment = new GlobalStatsFragment();
         } else if (id == R.id.nav_player_stats) {
-            Fragment fragment = new PlayerStatsFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentFrame, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            fragment = new PlayerStatsFragment();
         }
+        // Finalize transaction
+        transaction.replace(R.id.fragmentFrame, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
