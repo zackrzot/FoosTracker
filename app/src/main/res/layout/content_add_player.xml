@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/button_submit">
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,8 +17,7 @@
             android:divider="@android:color/black"
             android:orientation="vertical"
             android:scrollIndicators="right"
-            android:scrollbarSize="20sp"
-            android:showDividers="beginning|middle|end">
+            android:scrollbarSize="20sp">
 
             <TextView
                 android:id="@+id/textView_name"
@@ -48,12 +46,13 @@
                 android:textColor="@android:color/black"
                 android:textStyle="bold|italic" />
 
-            <DatePicker
-                android:id="@+id/datePicker"
+            <EditText
+                android:id="@+id/editText_dob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp" />
+                android:focusable="false"
+                android:ems="10"
+                android:inputType="date" />
 
             <TextView
                 android:id="@+id/textView_hometown"

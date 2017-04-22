@@ -24,4 +24,8 @@
     <string name="leaderboards">LEADERBOARDS</string>
     <string name="player_stats">PLAYER STATS</string>
     <string name="global_stats">GLOBAL STATS</string>
+    <string-array name="handedness_array">
+        <item>RIGHT</item>
+        <item>LEFT</item>
+    </string-array>
 </resources>

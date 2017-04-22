@@ -8,10 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.app.Activity;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class StartGameFragment extends Fragment{
 
     StartGameListener activityCommander;
+
+    private TextView totalGames;
+    private TextView totalGoals;
 
     public interface StartGameListener{
         public void startGame();
@@ -34,6 +38,8 @@ public class StartGameFragment extends Fragment{
         View view  = inflater.inflate(R.layout.content_start_game, container, false);
 
         final Button startGameButton = (Button) view.findViewById(R.id.button_startGame);
+        totalGames = (TextView) view.findViewById(R.id.textView_totalGamesNumber);
+        totalGoals = (TextView) view.findViewById(R.id.textView_totalGoalsNumber);
 
         startGameButton.setOnClickListener(
                 new View.OnClickListener(){
@@ -50,5 +56,15 @@ public class StartGameFragment extends Fragment{
         activityCommander.startGame();
     }
 
+
+    public void UpdateDisplayStats(final int numGames, final int numGoals){
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                totalGames.setText(Integer.toString(numGames));
+                totalGoals.setText(Integer.toString(numGoals));
+            }
+        });
+    }
 
 }

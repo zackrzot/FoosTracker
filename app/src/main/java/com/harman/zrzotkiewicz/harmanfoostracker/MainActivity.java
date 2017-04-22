@@ -1,12 +1,14 @@
 package com.harman.zrzotkiewicz.harmanfoostracker;
 
-import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,14 +18,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.AbsoluteLayout;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
+import android.view.inputmethod.InputMethodManager;
 
-import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        StartGameFragment.StartGameListener,
+        AddPlayerFragment.SubmitNewPlayerListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Syncing to database...", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                onFabClicked();
             }
         });
 
@@ -55,11 +55,94 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Create initial fragment
         Fragment fragment = new StartGameFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentFrame, fragment);
-        //transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    // This is called by the startGameFragment when the start game button is pressed
+    @Override
+    public void startGame() {
+
+    }
+
+    public void onFabClicked(){
+        Snackbar.make(findViewById(android.R.id.content), "Connecting to server...", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                if(WebAPIHelper.IsWebAppOnline()){
+                    Snackbar.make(findViewById(android.R.id.content), "Syncing data...", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
+                    RefreshFragmentSpecificContent(getSupportFragmentManager().findFragmentById(R.id.fragmentFrame).getId());
+                }
+                else{
+                    Snackbar.make(findViewById(android.R.id.content), "ERROR: Unable to reach server.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            }
+        }).start();
+    }
+
+    public void RefreshFragmentSpecificContent(int fragID){
+        Log.e("INFO", "Refreshing specific content for: " + Integer.toString(fragID));
+        // StartGameFragment
+        if(fragID == 2131558512){
+            StartGameFragment fragment = (StartGameFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
+            fragment.UpdateDisplayStats(WebAPIHelper.GetTotalNumberOfGames(), WebAPIHelper.GetTotalNumberOfGoals());
+        }
+    }
+
+    // This is called by the addNewPlayer fragment when the form is submitted
+    @Override
+    public void submitNewPlayer(PlayerData playerData) {
+        // Close keyboard
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
+        // Check for valid values
+        if (playerData.AreAnyFieldsEmpty()) {
+            // Create a dialog and return if incomplete
+            new AlertDialog.Builder(this)
+                    .setMessage("You must complete all fields to create a new player.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    })
+                    .show();
+        } else {
+            // Attempt to create new player
+            String result = NewPlayerHelper.CreateNewPlayer(playerData);
+            if (result.equals("null")) {
+                new AlertDialog.Builder(this)
+                        .setMessage("New player created!")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                AddPlayerFragment fragment = (AddPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
+                                fragment.ResetFields();
+                            }
+                        })
+                        .show();
+            } else {
+                // Alert user of player add failure
+                new AlertDialog.Builder(this)
+                        .setMessage("Unable to create a new player:\n" + result)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
+
+            }
+        }
     }
 
     @Override
