@@ -12,20 +12,21 @@ import android.widget.TextView;
 
 public class StartGameFragment extends Fragment{
 
-    StartGameListener activityCommander;
+    StartGameInterface startGameInterface;
 
     private TextView totalGames;
     private TextView totalGoals;
 
-    public interface StartGameListener{
-        public void startGame();
+    public interface StartGameInterface {
+        public void StartGameFragStartGame();
+        public void StartGameFragHMILoaded();
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try{
-            activityCommander = (StartGameListener) activity;
+            startGameInterface = (StartGameInterface) activity;
         }
         catch (ClassCastException e){
             activity.toString();
@@ -44,17 +45,21 @@ public class StartGameFragment extends Fragment{
         startGameButton.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-                        startGameButtonClickedView(v);
+                        StartGameButtonClickedView(v);
                     }
                 }
             );
 
+        HMILoaded();
+
         return view;
     }
 
-    public void startGameButtonClickedView(View view){
-        activityCommander.startGame();
+    public void StartGameButtonClickedView(View view){
+        startGameInterface.StartGameFragStartGame();
     }
+
+    public void HMILoaded(){ startGameInterface.StartGameFragHMILoaded(); }
 
 
     public void UpdateDisplayStats(final int numGames, final int numGoals){

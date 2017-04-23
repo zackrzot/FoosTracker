@@ -2,13 +2,13 @@ package com.harman.zrzotkiewicz.harmanfoostracker;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,7 +23,7 @@ import android.view.inputmethod.InputMethodManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        StartGameFragment.StartGameListener,
+        StartGameFragment.StartGameInterface,
         AddPlayerFragment.SubmitNewPlayerListener{
 
     @Override
@@ -64,8 +64,21 @@ public class MainActivity extends AppCompatActivity
 
     // This is called by the startGameFragment when the start game button is pressed
     @Override
-    public void startGame() {
+    public void StartGameFragStartGame() {
+        Intent intent = new Intent(this, GameSetupActivity.class);
+        intent.putExtra("A", "B");
+        startActivity(intent);
+    }
 
+    @Override
+    public void StartGameFragHMILoaded() {
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                StartGameFragment fragment = (StartGameFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
+                fragment.UpdateDisplayStats(WebAPIHelper.GetTotalNumberOfGames(), WebAPIHelper.GetTotalNumberOfGoals());
+            }
+        }).start();
     }
 
     public void onFabClicked(){
@@ -77,7 +90,6 @@ public class MainActivity extends AppCompatActivity
                 if(WebAPIHelper.IsWebAppOnline()){
                     Snackbar.make(findViewById(android.R.id.content), "Syncing data...", Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
-                    RefreshFragmentSpecificContent(getSupportFragmentManager().findFragmentById(R.id.fragmentFrame).getId());
                 }
                 else{
                     Snackbar.make(findViewById(android.R.id.content), "ERROR: Unable to reach server.", Snackbar.LENGTH_LONG)
@@ -88,12 +100,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void RefreshFragmentSpecificContent(int fragID){
-        Log.e("INFO", "Refreshing specific content for: " + Integer.toString(fragID));
-        // StartGameFragment
-        if(fragID == 2131558512){
-            StartGameFragment fragment = (StartGameFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
-            fragment.UpdateDisplayStats(WebAPIHelper.GetTotalNumberOfGames(), WebAPIHelper.GetTotalNumberOfGoals());
-        }
+
     }
 
     // This is called by the addNewPlayer fragment when the form is submitted

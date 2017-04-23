@@ -22,13 +22,13 @@
         android:id="@+id/textView_har"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/textView_title"
+        android:layout_centerHorizontal="true"
         android:text="@string/harman"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#0066ff"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="45sp"
-        android:textStyle="bold"
-        android:layout_above="@+id/textView_title"
-        android:layout_centerHorizontal="true" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView_title"

@@ -24,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
+                android:paddingTop="20sp"
                 android:text="Player Name"
                 android:textAlignment="textStart"
                 android:textColor="@android:color/black"

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context="com.harman.zrzotkiewicz.harmanfoostracker.GameSetupActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/textView_rt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RED TEAM"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_rt_p1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PLAYER 1"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_rt_p1"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:background="@android:color/holo_red_dark" />
+
+        <TextView
+            android:id="@+id/textView_rt_p2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PLAYER 2"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_rt_p2"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:background="@android:color/holo_red_dark" />
+
+        <TextView
+            android:id="@+id/textView_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20sp"
+            android:text="BLUE TEAM"
+            android:textAlignment="center"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_bt_p1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PLAYER 1"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_bt_p1"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:background="?attr/colorPrimary" />
+
+        <TextView
+            android:id="@+id/textView1_bt_p2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PLAYER 2"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_bt_p2"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:background="?attr/colorPrimary" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_kickoff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="KICK OFF!" />
+</RelativeLayout>

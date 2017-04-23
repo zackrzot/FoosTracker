@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class WebAPIHelper {
 
-    final static String webAddress = "http://192.168.1.8:80";
+    final static String webAddress = "http://192.168.1.8";
 
     private static JSONArray getFromAPI(String apiUrl){
         String stringJson = null;
@@ -54,7 +54,7 @@ public class WebAPIHelper {
         try {
             jsonResult = new JSONArray(stringJson);
         }
-        catch(JSONException e) {
+        catch(Exception e) {
             Log.e("ERROR", "Error parsing data " + e.toString());
         }
         return  jsonResult;
