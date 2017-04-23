@@ -1,5 +1,8 @@
 package com.harman.zrzotkiewicz.harmanfoostracker;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +40,8 @@ public class GameActivity extends AppCompatActivity {
     private Button button_btp2_owng;
     private Button button_btp2_slap;
 
+    private Button button_end_game;
+
     private TextView textView_rtp1_offg;
     private TextView textView_rtp1_defg;
     private TextView textView_rtp1_owng;
@@ -70,8 +75,45 @@ public class GameActivity extends AppCompatActivity {
         // Set button press listeners
         SetListeners();
 
+        updateFullHMI();
+
+        button_end_game.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        EndGameButtonClicked(v);
+                    }
+                }
+        );
     }
 
+    private void updateFullHMI(){
+
+        textView_rtp1_name.setText(GameState.GetRTP1Name());
+        textView_rtp2_name.setText(GameState.GetRTP2Name());
+        textView_btp1_name.setText(GameState.GetBTP1Name());
+        textView_btp2_name.setText(GameState.GetBTP2Name());
+
+        if(GameState.GetRTP2Name()=="No Player")
+            disableRTP2Buttons();
+
+        if(GameState.GetBTP2Name()=="No Player")
+            disableBTP2Buttons();
+
+    }
+
+    private void disableRTP2Buttons(){
+        button_rtp2_offg.setEnabled(false);
+        button_rtp2_defg.setEnabled(false);
+        button_rtp2_owng.setEnabled(false);
+        button_rtp2_slap.setEnabled(false);
+    }
+
+    private void disableBTP2Buttons(){
+        button_btp2_offg.setEnabled(false);
+        button_btp2_defg.setEnabled(false);
+        button_btp2_owng.setEnabled(false);
+        button_btp2_slap.setEnabled(false);
+    }
 
 
     public void LocateViews(){
@@ -105,6 +147,7 @@ public class GameActivity extends AppCompatActivity {
         button_btp2_owng = (Button) findViewById(R.id.button_btp2_owng);
         button_btp2_slap = (Button) findViewById(R.id.button_btp2_slap);
 
+        button_end_game = (Button) findViewById(R.id.button_end_game);
 
         textView_rtp1_offg = (TextView) findViewById(R.id.textView_rtp1_offg);
         textView_rtp1_defg = (TextView) findViewById(R.id.textView_rtp1_defg);
@@ -199,6 +242,212 @@ public class GameActivity extends AppCompatActivity {
         });
         //endregion
 
+        //region RTP2 Listeners
+        button_rtp2_offg.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    GameState.AddRTP2OffG();
+                                                    updateHMIValues();
+                                                }
+                                            }
+        );
+        button_rtp2_offg.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubRTP2OffG();
+                updateHMIValues();
+                return true;
+            }
+        });
+        button_rtp2_defg.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    GameState.AddRTP2DefG();
+                                                    updateHMIValues();
+                                                }
+                                            }
+        );
+        button_rtp2_defg.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubRTP2DefG();
+                updateHMIValues();
+                return true;
+            }
+        });
+        button_rtp2_owng.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GameState.AddRTP2OwnG();
+                        updateHMIValues();
+                    }
+                }
+        );
+        button_rtp2_owng.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubRTP2OwnG();
+                updateHMIValues();
+                return true;
+            }
+        });
+        button_rtp2_slap.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GameState.AddRTP2Slap();
+                        updateHMIValues();
+                    }
+                }
+        );
+        button_rtp2_slap.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubRTP2Slap();
+                updateHMIValues();
+                return true;
+            }
+        });
+        //endregion
+
+        //region BTP1 Listeners
+        button_btp1_offg.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    GameState.AddBTP1OffG();
+                                                    updateHMIValues();
+                                                }
+                                            }
+        );
+        button_btp1_offg.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubBTP1OffG();
+                updateHMIValues();
+                return true;
+            }
+        });
+        button_btp1_defg.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    GameState.AddBTP1DefG();
+                                                    updateHMIValues();
+                                                }
+                                            }
+        );
+        button_btp1_defg.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubBTP1DefG();
+                updateHMIValues();
+                return true;
+            }
+        });
+        button_btp1_owng.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GameState.AddBTP1OwnG();
+                        updateHMIValues();
+                    }
+                }
+        );
+        button_btp1_owng.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubBTP1OwnG();
+                updateHMIValues();
+                return true;
+            }
+        });
+        button_btp1_slap.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GameState.AddBTP1Slap();
+                        updateHMIValues();
+                    }
+                }
+        );
+        button_btp1_slap.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubBTP1Slap();
+                updateHMIValues();
+                return true;
+            }
+        });
+        //endregion
+
+        //region BTP2 Listeners
+        button_btp2_offg.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    GameState.AddBTP2OffG();
+                                                    updateHMIValues();
+                                                }
+                                            }
+        );
+        button_btp2_offg.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubBTP2OffG();
+                updateHMIValues();
+                return true;
+            }
+        });
+        button_btp2_defg.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    GameState.AddBTP2DefG();
+                                                    updateHMIValues();
+                                                }
+                                            }
+        );
+        button_btp2_defg.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubBTP2DefG();
+                updateHMIValues();
+                return true;
+            }
+        });
+        button_btp2_owng.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GameState.AddBTP2OwnG();
+                        updateHMIValues();
+                    }
+                }
+        );
+        button_btp2_owng.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubBTP2OwnG();
+                updateHMIValues();
+                return true;
+            }
+        });
+        button_btp2_slap.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GameState.AddBTP2Slap();
+                        updateHMIValues();
+                    }
+                }
+        );
+        button_btp2_slap.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                GameState.SubBTP2Slap();
+                updateHMIValues();
+                return true;
+            }
+        });
+        //endregion
 
     }
 
@@ -235,9 +484,97 @@ public class GameActivity extends AppCompatActivity {
         textView_btp2_owng.setText(formatInt(GameState.GetBTP2OwnG()));
         textView_btp2_slap.setText(formatInt(GameState.GetBTP2Slaps()));
 
+        button_end_game.setEnabled(isGameOver());
+
     }
 
+    private Boolean isGameOver(){
+        if((GameState.GetRedTeamScore() >= 10) || (GameState.GetBlueTeamScore() >= 10))
+            return true;
+        return false;
+    }
 
+    public void EndGameButtonClicked(View view){
+
+        if((GameState.GetRedTeamScore() == 10) && (GameState.GetBlueTeamScore() == 10)){
+            showAlertDialog("A tie is not possible. Please fix the score before ending the game.");
+            return;
+        }
+
+        if((GameState.GetRedTeamScore() > 10) || (GameState.GetBlueTeamScore() > 10)){
+            showAlertDialog("A score greater than 10 is not possible. Please fix the score before ending the game.");
+            return;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Confirm")
+                .setMessage("Are you sure you want to end the game?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        FinalizeGame();
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+
+    }
+
+    public void FinalizeGame(){
+        // Set end game time
+        GameState.SetEndTime();
+
+        // Submit score to web
+        submitScore();
+
+        // Reset the game state
+        GameState.ResetGameState();
+
+        // Return to home screen.
+        startMainActivity();
+    }
+
+    private void showAlertDialog(String message){
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                })
+                .show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Back button pressed")
+                .setMessage("Are you sure you want to end the game? All progress will be lost.")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        GameState.ResetGameState();
+                        backButtonEvent();
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+    }
+
+    public void backButtonEvent(){
+        super.onBackPressed();
+    }
+
+    private void submitScore(){
+
+
+
+    }
+
+    private void startMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("A", "B");
+        finish();
+        startActivity(intent);
+    }
 
 
     

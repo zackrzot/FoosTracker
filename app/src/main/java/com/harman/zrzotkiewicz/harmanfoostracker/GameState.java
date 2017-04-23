@@ -345,7 +345,7 @@ public class GameState {
 
     public static void SubBTP2Slap(){
         if(BlueTeamPlayer2SlapBacks>0)
-            BlueTeamPlayer1SlapBacks--;
+            BlueTeamPlayer2SlapBacks--;
     }
 
     public static int GetBTP2Slaps(){

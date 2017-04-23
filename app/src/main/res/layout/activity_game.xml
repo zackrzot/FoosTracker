@@ -528,7 +528,7 @@
             android:textStyle="italic" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/button_end_game"
             android:layout_width="match_parent"
             android:layout_height="40sp"
             android:enabled="false"
