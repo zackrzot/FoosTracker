@@ -3,6 +3,8 @@ package com.harman.zrzotkiewicz.harmanfoostracker;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -19,11 +21,15 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
+import static android.R.attr.data;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         StartGameFragment.StartGameInterface,
         AddPlayerFragment.SubmitNewPlayerListener{
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,21 @@ public class MainActivity extends AppCompatActivity
         transaction.replace(R.id.fragmentFrame, fragment);
         transaction.commit();
 
+        // Display server status
+        Utility.NotifyDeviceOnlineStatus(this);
+
         // Config toolbar
         setToolbarTitle("");
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public void setToolbarTitle(String title){
@@ -56,98 +75,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
     }
 
-    // This is called by the startGameFragment when the start game button is pressed
-    @Override
-    public void StartGameFragStartGame() {
-        Intent intent = new Intent(this, GameSetupActivity.class);
-        intent.putExtra("A", "B");
-        startActivity(intent);
-    }
-
-    @Override
-    public void StartGameFragHMILoaded() {
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-                StartGameFragment fragment = (StartGameFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
-                fragment.UpdateDisplayStats(WebAPIHelper.GetTotalNumberOfGames(), WebAPIHelper.GetTotalNumberOfGoals());
-            }
-        }).start();
-    }
-
-    public void onFabClicked(){
-        Snackbar.make(findViewById(android.R.id.content), "Connecting to server...", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-                if(WebAPIHelper.IsWebAppOnline()){
-                    Snackbar.make(findViewById(android.R.id.content), "Syncing data...", Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
-                }
-                else{
-                    Snackbar.make(findViewById(android.R.id.content), "ERROR: Unable to reach server.", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-            }
-        }).start();
-    }
-
-    // This is called by the addNewPlayer fragment when the form is submitted
-    @Override
-    public void submitNewPlayer(PlayerData playerData) {
-        // Close keyboard
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-
-        // Check for valid values
-        // If any fields are empty
-        if (playerData.AreAnyFieldsEmpty()) {
-            // Create a dialog and return if incomplete
-            showAlertDialog("You must complete all fields to create a new player.");
-        }
-        // All fields have been completed
-        else {
-            // Attempt to create new player
-            String result = NewPlayerHelper.CreateNewPlayer(playerData);
-            // No issues, player created
-            if (result.equals("null")) {
-                showAlertDialog("New player created!");
-                AddPlayerFragment fragment = (AddPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
-                fragment.ResetFields();
-            }
-            // Unable to create the player
-            else {
-                // Alert user of player add failure
-                showAlertDialog("Unable to create a new player:\n" + result);
-            }
-        }
-    }
-
-    private void showAlertDialog(String message){
-        new AlertDialog.Builder(this)
-                .setMessage(message)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                })
-                .show();
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
+    //region NavigationView
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -177,7 +105,85 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
+    //endregion
+
+    //region StartGameFragment
+    @Override
+    public void StartGameFragStartGame() {
+        Intent intent = new Intent(this, GameSetupActivity.class);
+        intent.putExtra("A", "B");
+        startActivity(intent);
+    }
+
+    @Override
+    public void StartGameFragHMILoaded() {
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                StartGameFragment fragment = (StartGameFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
+                fragment.UpdateDisplayStats(DatabaseManager.GetTotalNumberOfGames(), DatabaseManager.GetTotalNumberOfGoals());
+            }
+        }).start();
+    }
+    //endregion
+
+    //region NewPlayerFragment
+    @Override
+    public void submitNewPlayer(PlayerData playerData) {
+        // Close keyboard
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
+        // Check for valid values
+        // If any fields are empty
+        if (playerData.AreAnyFieldsEmpty()) {
+            // Create a dialog and return if incomplete
+            Utility.ShowAlertDialog(this, "You must complete all fields to create a new player.");
+        }
+        // All fields have been completed
+        else {
+            // Attempt to create new player
+            String result = AddPlayerHelper.CreateNewPlayer(playerData);
+            // No issues, player created
+            if (result.equals("null")) {
+                Utility.ShowAlertDialog(this, "New player created!");
+                AddPlayerFragment fragment = (AddPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
+                fragment.ResetFields();
+            }
+            // Unable to create the player
+            else {
+                // Alert user of player add failure
+                Utility.ShowAlertDialog(this, "Unable to create a new player:\n" + result);
+            }
+        }
+    }
+
+    @Override
+    public void playerImageClicked() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = Utility.MakeImageSquare(imageBitmap);
+            AddPlayerFragment fragment = (AddPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
+            fragment.SetPlayerPhotoBitmap(imageBitmap);
+        }
+    }
+
+    //endregion
+
 
 }

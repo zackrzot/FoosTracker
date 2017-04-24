@@ -2,17 +2,26 @@ package com.harman.zrzotkiewicz.harmanfoostracker;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.annotation.BoolRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
 
     //region Variables
+    private int previousRedScore = 0;
+    private int previousBlueScore = 0;
+
+    private TextView textView_gameWin;
+
     private TextView textView_red_score;
     private TextView textView_blue_score;
 
@@ -74,6 +83,9 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        // Keep the game screen on
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         // Locate the views on the HMI
         LocateViews();
@@ -141,6 +153,7 @@ public class GameActivity extends AppCompatActivity {
 
         textView_red_score = (TextView) findViewById(R.id.textView_red_score);
         textView_blue_score = (TextView) findViewById(R.id.textView_blue_score);
+        textView_gameWin = (TextView) findViewById(R.id.textView_gameWin);
 
         textView_rtp1_name = (TextView) findViewById(R.id.textView_rtp1_name);
         textView_rtp2_name = (TextView) findViewById(R.id.textView_rtp2_name);
@@ -511,6 +524,8 @@ public class GameActivity extends AppCompatActivity {
 
         button_end_game.setEnabled(isGameOver());
 
+        checkForWin();
+
     }
 
     private Boolean isGameOver(){
@@ -522,12 +537,12 @@ public class GameActivity extends AppCompatActivity {
     public void EndGameButtonClicked(View view){
 
         if((GameState.GetRedTeamScore() == 10) && (GameState.GetBlueTeamScore() == 10)){
-            showAlertDialog("A tied game is not possible.\n\nPlease fix the score before ending the game.");
+            Utility.ShowAlertDialog(this, "A tied game is not possible.\n\nPlease fix the score before ending the game.");
             return;
         }
 
         if((GameState.GetRedTeamScore() > 10) || (GameState.GetBlueTeamScore() > 10)){
-            showAlertDialog("A score greater than 10 is not possible.\n\nPlease fix the score before ending the game.");
+            Utility.ShowAlertDialog(this, "A score greater than 10 is not possible.\n\nPlease fix the score before ending the game.");
             return;
         }
 
@@ -558,15 +573,11 @@ public class GameActivity extends AppCompatActivity {
         startMainActivity();
     }
 
-    private void showAlertDialog(String message){
-        new AlertDialog.Builder(this)
-                .setMessage(message)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    }
-                })
-                .show();
+    private void submitScore(){
+
+
+
+
     }
 
     @Override
@@ -588,10 +599,61 @@ public class GameActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    private void submitScore(){
+    private void checkForWin(){
+        if(previousRedScore == 9 && GameState.GetRedTeamScore() == 10)
+            redTeamWinAnimation();
 
+        if(previousBlueScore == 9 && GameState.GetBlueTeamScore() == 10)
+            blueTeamWinAnimation();
 
+        previousRedScore = GameState.GetRedTeamScore();
+        previousBlueScore = GameState.GetBlueTeamScore();
+    }
 
+    private void redTeamWinAnimation(){
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                for(int i = 0; i < 10; i++){
+                    UpdateGameWinView(true, "RED TEAM WINS!", R.color.redTeam);
+                    try { Thread.sleep(100); }
+                    catch(Exception ex) {}
+                    UpdateGameWinView(false, "RED TEAM WINS!", R.color.redTeam);
+                    try { Thread.sleep(100); }
+                    catch(Exception ex) {}
+                }
+            }
+        }).start();
+    }
+
+    private void blueTeamWinAnimation(){
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                for(int i = 0; i < 10; i++){
+                    UpdateGameWinView(true, "BLUE TEAM WINS!", R.color.blueTeam);
+                    try { Thread.sleep(100); }
+                    catch(Exception ex) {}
+                    UpdateGameWinView(false, "BLUE TEAM WINS!", R.color.blueTeam);
+                    try { Thread.sleep(100); }
+                    catch(Exception ex) {}
+                }
+            }
+        }).start();
+    }
+
+    public void UpdateGameWinView(final Boolean visible, final String text, final int resourceColorId){
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(visible)
+                    textView_gameWin.setVisibility(View.VISIBLE);
+                else
+                    textView_gameWin.setVisibility(View.INVISIBLE);
+                textView_gameWin.setText(text);
+                textView_gameWin.setTextColor(getResources().getColor(resourceColorId));
+            }
+        });
     }
 
     private void startMainActivity(){

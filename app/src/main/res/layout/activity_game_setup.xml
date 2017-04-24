@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/gameSetupBackground"
     tools:context="com.harman.zrzotkiewicz.harmanfoostracker.GameSetupActivity">
 
     <LinearLayout
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10sp"
-            android:text="RED TEAM"
+            android:text="@string/red_team"
             android:textAlignment="center"
             android:textColor="@color/redTeam"
             android:textSize="30sp"
@@ -35,7 +35,7 @@
             android:id="@+id/textView_rt_p1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PLAYER 1"
+            android:text="@string/player_1"
             android:textColor="@color/redTeam"
             android:textSize="20sp" />
 
@@ -50,7 +50,7 @@
             android:id="@+id/textView_rt_p2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PLAYER 2"
+            android:text="@string/player_2"
             android:textColor="@color/redTeam"
             android:textSize="20sp" />
 
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20sp"
-            android:text="BLUE TEAM"
+            android:text="@string/blue_team"
             android:textAlignment="center"
             android:textColor="@color/blueTeam"
             android:textSize="30sp"
@@ -75,7 +75,7 @@
             android:id="@+id/textView_bt_p1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PLAYER 1"
+            android:text="@string/player_1"
             android:textColor="@color/blueTeam"
             android:textSize="20sp" />
 
@@ -89,7 +89,7 @@
             android:id="@+id/textView1_bt_p2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PLAYER 2"
+            android:text="@string/player_2"
             android:textColor="@color/blueTeam"
             android:textSize="20sp" />
 
@@ -108,5 +108,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="#ffffff"
-        android:text="KICK OFF!" />
+        android:text="@string/kick_off" />
 </RelativeLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,15 +10,64 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@android:color/black"
             android:orientation="vertical"
-            android:scrollIndicators="right"
             android:scrollbarSize="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_playerPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="@string/player_photo"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+                <ImageView
+                    android:id="@+id/imageView_playerPhoto"
+                    android:layout_width="150sp"
+                    android:layout_height="150sp"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/ic_menu_camera"
+                    android:contentDescription="@string/player_profile_pic" />
+
+                <TextView
+                    android:id="@+id/textView_photo_directions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="@string/tap_to_take_photo"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    android:textStyle="italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry,SmallSp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,17 +88,89 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
                     android:paddingTop="10sp"
-                    android:text="Player Name"
+                    android:text="@string/player_name"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/editText_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    tools:ignore="LabelFor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_pin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="@string/player_pin"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+                <EditText
+                    android:id="@+id/editText_pin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="numberPassword"
+                    tools:ignore="LabelFor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_pin_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="@string/confirm_player_pin"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+                <EditText
+                    android:id="@+id/editText_pin_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="numberPassword"
+                    tools:ignore="LabelFor" />
 
             </LinearLayout>
 
@@ -71,10 +193,11 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
                     android:paddingTop="10sp"
-                    android:text="Date of Birth"
+                    android:text="@string/date_of_birth"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/editText_dob"
@@ -82,7 +205,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    tools:ignore="LabelFor" />
 
             </LinearLayout>
 
@@ -105,17 +229,19 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
                     android:paddingTop="10sp"
-                    android:text="Hometown"
+                    android:text="@string/hometown"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/editText_hometown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    tools:ignore="LabelFor" />
 
             </LinearLayout>
 
@@ -138,10 +264,11 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
                     android:paddingTop="10sp"
-                    android:text="Biography"
+                    android:text="@string/biography"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/editText_bio"
@@ -149,7 +276,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="8sp" />
+                    android:textSize="8sp"
+                    tools:ignore="LabelFor,SmallSp" />
 
             </LinearLayout>
 
@@ -172,10 +300,11 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
                     android:paddingTop="10sp"
-                    android:text="Jersey Number"
+                    android:text="@string/jersey_number"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <Spinner
                     android:id="@+id/spinner_jerseyNumber"
@@ -203,10 +332,11 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
                     android:paddingTop="10sp"
-                    android:text="Handedness"
+                    android:text="@string/handedness"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <Spinner
                     android:id="@+id/spinner_handedness"
@@ -234,17 +364,19 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
                     android:paddingTop="10sp"
-                    android:text="Height (in)"
+                    android:text="@string/height_in"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/editText_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    tools:ignore="LabelFor" />
 
             </LinearLayout>
 
@@ -267,17 +399,19 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
                     android:paddingTop="10sp"
-                    android:text="Weight (lbs)"
+                    android:text="@string/weight_lbs"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/editText_weight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    tools:ignore="LabelFor" />
 
             </LinearLayout>
 
@@ -285,10 +419,7 @@
                 android:id="@+id/button_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:background="#ffffff"
+                android:background="@drawable/image_border"
                 android:text="@string/submit"
                 android:textAllCaps="false" />
 

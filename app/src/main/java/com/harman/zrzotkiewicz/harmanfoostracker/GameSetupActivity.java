@@ -80,14 +80,7 @@ public class GameSetupActivity extends AppCompatActivity {
 
         // Make sure each team has at least one player
         if(!isPlayerSelectedInSpinner(spinnerRTP1) || !isPlayerSelectedInSpinner(spinnerBTP1)) {
-            new AlertDialog.Builder(this)
-                    .setMessage("There must be at least one player on each team.")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            return;
-                        }
-                    })
-                    .show();
+            Utility.ShowAlertDialog(this, "There must be at least one player on each team.");
             return false;
         }
 
@@ -125,14 +118,7 @@ public class GameSetupActivity extends AppCompatActivity {
     }
 
     private void warnOfDuplicatePlayer(String name){
-        new AlertDialog.Builder(this)
-                .setMessage("The player "+name+" cannot be used in more than one spot.")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    }
-                })
-                .show();
+        Utility.ShowAlertDialog(this, "The player "+name+" cannot be used in more than one spot.");
     }
 
     private Boolean isPlayerSelectedInSpinner(Spinner spinner){
@@ -170,5 +156,6 @@ public class GameSetupActivity extends AppCompatActivity {
         spinnerBTP2.setAdapter(adapter);
 
     }
+
 
 }

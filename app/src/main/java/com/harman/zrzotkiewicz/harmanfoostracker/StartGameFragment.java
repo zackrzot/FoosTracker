@@ -1,8 +1,11 @@
 package com.harman.zrzotkiewicz.harmanfoostracker;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +21,8 @@ public class StartGameFragment extends Fragment{
     private TextView totalGoals;
 
     public interface StartGameInterface {
-        public void StartGameFragStartGame();
-        public void StartGameFragHMILoaded();
+        void StartGameFragStartGame();
+        void StartGameFragHMILoaded();
     }
 
     @Override
@@ -56,7 +59,18 @@ public class StartGameFragment extends Fragment{
     }
 
     public void StartGameButtonClickedView(View view){
-        startGameInterface.StartGameFragStartGame();
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                if(DatabaseManager.IsWebAppOnline()){
+                    startGameInterface.StartGameFragStartGame();
+                }
+                else{
+                    Utility.ShowAlertDialog(getActivity(), "Unable to reach server. You must be connected to the HARMAN intranet" +
+                            " before you can start a new game.");
+                }
+            }
+        }).start();
     }
 
     public void HMILoaded(){ startGameInterface.StartGameFragHMILoaded(); }

@@ -1,6 +1,6 @@
 package com.harman.zrzotkiewicz.harmanfoostracker;
 
-public class NewPlayerHelper {
+public class AddPlayerHelper {
 
 
     public static String CreateNewPlayer(PlayerData playerData){

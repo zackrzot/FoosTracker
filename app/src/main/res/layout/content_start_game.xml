@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#003300">
+    android:background="@color/startGameFragment">
 
     <TextView
         android:id="@+id/textView_totalGamesNumber"
@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/harman"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/harmanLogo"
         android:textSize="45sp"
         android:textStyle="bold" />
 
@@ -34,14 +34,14 @@
         android:id="@+id/textView_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/button_startGame"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
         android:text="@string/foos_tracker"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/holo_orange_light"
         android:textSize="40sp"
-        android:textStyle="italic"
-        android:layout_above="@+id/button_startGame"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="21dp" />
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/button_startGame"

@@ -9,4 +9,7 @@
     <color name="blueTeam">#304ffe</color>
     <color name="dialogCustomWindowBackground">#ffeb3b</color>
     <color name="black">#000000</color>
+    <color name="startGameFragment">#2e7d32</color>
+    <color name="harmanLogo">#283593</color>
+    <color name="gameSetupBackground">#424242</color>
 </resources>
