@@ -61,7 +61,6 @@ public class StartGameFragment extends Fragment{
 
     public void HMILoaded(){ startGameInterface.StartGameFragHMILoaded(); }
 
-
     public void UpdateDisplayStats(final int numGames, final int numGoals){
         getActivity().runOnUiThread(new Runnable() {
             @Override

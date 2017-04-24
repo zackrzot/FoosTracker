@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 public class GameState {
 
+    //region Variables
     private static Boolean GameActive = false;
     private static String RedTeamPlayer1Name = "";
     private static String RedTeamPlayer2Name = "";
@@ -29,7 +30,10 @@ public class GameState {
     private static int BlueTeamPlayer2SlapBacks = 0;
     private static String StartTime;
     private static String EndTime;
+    private static String GameType = "";
+    //endregion
 
+    //region General Game
     public static Boolean IsGameActive(){
         return GameActive;
     }
@@ -57,7 +61,12 @@ public class GameState {
         BlueTeamPlayer2DefensiveGoals = 0;
         BlueTeamPlayer2OwnGoals = 0;
         BlueTeamPlayer2SlapBacks = 0;
+        GameType = "";
     }
+
+    public static void SetGameType(String gameType) { GameType = gameType; }
+
+    public static String GetGameType() { return GameType; }
 
     public static void SetGameActive(){
         GameActive = true;
@@ -82,8 +91,9 @@ public class GameState {
     public static String GetEndTime(){
         return EndTime;
     }
+    //endregion
 
-    /// Team ///
+    //region Team Specific
     public static int GetRedTeamScore(){
         return (RedTeamPlayer1OffensiveGoals + RedTeamPlayer1DefensiveGoals +
                 RedTeamPlayer2OffensiveGoals + RedTeamPlayer2DefensiveGoals +
@@ -96,7 +106,9 @@ public class GameState {
                 RedTeamPlayer1OwnGoals + RedTeamPlayer2OwnGoals);
     }
 
-    /// Red Team Player 1 ///
+    //endregion
+
+    //region Red Team Player 1
     public static void SetRTP1Name(String name){
         RedTeamPlayer1Name = name;
     }
@@ -159,8 +171,9 @@ public class GameState {
     public static int GetRTP1Slaps(){
         return RedTeamPlayer1SlapBacks;
     }
+    //endregion
 
-    /// Red Team Player 2 ///
+    //region Red Team Player 2
     public static void SetRTP2Name(String name){
         RedTeamPlayer2Name = name;
     }
@@ -223,8 +236,9 @@ public class GameState {
     public static int GetRTP2Slaps(){
         return RedTeamPlayer2SlapBacks;
     }
+    //endregion
 
-    /// Blue Team Player 1 ///
+    //region Blue Team Player 1
     public static void SetBTP1Name(String name){
         BlueTeamPlayer1Name = name;
     }
@@ -287,8 +301,9 @@ public class GameState {
     public static int GetBTP1Slaps(){
         return BlueTeamPlayer1SlapBacks;
     }
+    //endregion
 
-    /// Blue Team Player 2 ///
+    //region Blue Team Player 2
     public static void SetBTP2Name(String name){
         BlueTeamPlayer2Name = name;
     }
@@ -351,5 +366,6 @@ public class GameState {
     public static int GetBTP2Slaps(){
         return BlueTeamPlayer2SlapBacks;
     }
+    //endregion
 
 }

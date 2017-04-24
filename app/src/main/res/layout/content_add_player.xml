@@ -8,8 +8,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,140 +19,267 @@
             android:scrollIndicators="right"
             android:scrollbarSize="20sp">
 
-            <TextView
-                android:id="@+id/textView_name"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingTop="20sp"
-                android:text="Player Name"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textStyle="bold|italic" />
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editText_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                <TextView
+                    android:id="@+id/textView_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="Player Name"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic" />
 
-            <TextView
-                android:id="@+id/textView_dob"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:text="Date of Birth"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textStyle="bold|italic" />
+                <EditText
+                    android:id="@+id/editText_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/editText_dob"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:ems="10"
-                android:inputType="date" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView_hometown"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:text="Hometown"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textStyle="bold|italic" />
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editText_hometown"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                <TextView
+                    android:id="@+id/textView_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="Date of Birth"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic" />
 
-            <TextView
-                android:id="@+id/textView_bio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:text="Biography"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textStyle="bold|italic" />
+                <EditText
+                    android:id="@+id/editText_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="date" />
 
-            <EditText
-                android:id="@+id/editText_bio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="8sp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView_jerseyNumber"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:text="Jersey Number"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textStyle="bold|italic" />
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/spinner_jerseyNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/textView_hometown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="Hometown"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic" />
 
-            <TextView
-                android:id="@+id/textView_handedness"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:text="Handedness"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textStyle="bold|italic" />
+                <EditText
+                    android:id="@+id/editText_hometown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
 
-            <Spinner
-                android:id="@+id/spinner_handedness"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView_height"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:text="Height (in)"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textStyle="bold|italic" />
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editText_height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
+                <TextView
+                    android:id="@+id/textView_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="Biography"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic" />
 
-            <TextView
-                android:id="@+id/textView_weight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:text="Weight (lbs)"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textStyle="bold|italic" />
+                <EditText
+                    android:id="@+id/editText_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="8sp" />
 
-            <EditText
-                android:id="@+id/editText_weight"
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_jerseyNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="Jersey Number"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic" />
+
+                <Spinner
+                    android:id="@+id/spinner_jerseyNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_handedness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="Handedness"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic" />
+
+                <Spinner
+                    android:id="@+id/spinner_handedness"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="Height (in)"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/editText_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/newPlayerField"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:text="Weight (lbs)"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/editText_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/button_submit"
@@ -161,6 +288,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
+                android:background="#ffffff"
                 android:text="@string/submit"
                 android:textAllCaps="false" />
 

@@ -6,16 +6,23 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
 
+    //region Variables
     private TextView textView_red_score;
     private TextView textView_blue_score;
 
     private TextView textView_rtp1_name;
     private TextView textView_rtp2_name;
+
+    private TextView textView_rtp1_label;
+    private TextView textView_rtp2_label;
+    private TextView textView_btp1_label;
+    private TextView textView_btp2_label;
 
     private TextView textView_btp1_name;
     private TextView textView_btp2_name;
@@ -61,8 +68,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView textView_btp2_defg;
     private TextView textView_btp2_owng;
     private TextView textView_btp2_slap;
-
-
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,27 +100,42 @@ public class GameActivity extends AppCompatActivity {
         textView_btp2_name.setText(GameState.GetBTP2Name());
 
         if(GameState.GetRTP2Name()=="No Player")
-            disableRTP2Buttons();
+            disableRTP2();
 
         if(GameState.GetBTP2Name()=="No Player")
-            disableBTP2Buttons();
+            disableBTP2();
 
     }
 
-    private void disableRTP2Buttons(){
-        button_rtp2_offg.setEnabled(false);
-        button_rtp2_defg.setEnabled(false);
-        button_rtp2_owng.setEnabled(false);
-        button_rtp2_slap.setEnabled(false);
+    private void disableRTP2(){
+        button_rtp2_offg.setVisibility(View.INVISIBLE);
+        button_rtp2_defg.setVisibility(View.INVISIBLE);
+        button_rtp2_owng.setVisibility(View.INVISIBLE);
+        button_rtp2_slap.setVisibility(View.INVISIBLE);
+
+        textView_rtp2_label.setVisibility(View.INVISIBLE);
+        textView_rtp2_name.setVisibility(View.INVISIBLE);
+
+        textView_rtp2_offg.setVisibility(View.INVISIBLE);
+        textView_rtp2_defg.setVisibility(View.INVISIBLE);
+        textView_rtp2_owng.setVisibility(View.INVISIBLE);
+        textView_rtp2_slap.setVisibility(View.INVISIBLE);
     }
 
-    private void disableBTP2Buttons(){
-        button_btp2_offg.setEnabled(false);
-        button_btp2_defg.setEnabled(false);
-        button_btp2_owng.setEnabled(false);
-        button_btp2_slap.setEnabled(false);
-    }
+    private void disableBTP2(){
+        button_btp2_offg.setVisibility(View.INVISIBLE);
+        button_btp2_defg.setVisibility(View.INVISIBLE);
+        button_btp2_owng.setVisibility(View.INVISIBLE);
+        button_btp2_slap.setVisibility(View.INVISIBLE);
 
+        textView_btp2_label.setVisibility(View.INVISIBLE);
+        textView_btp2_name.setVisibility(View.INVISIBLE);
+
+        textView_btp2_offg.setVisibility(View.INVISIBLE);
+        textView_btp2_defg.setVisibility(View.INVISIBLE);
+        textView_btp2_owng.setVisibility(View.INVISIBLE);
+        textView_btp2_slap.setVisibility(View.INVISIBLE);
+    }
 
     public void LocateViews(){
 
@@ -126,6 +147,11 @@ public class GameActivity extends AppCompatActivity {
 
         textView_btp1_name = (TextView) findViewById(R.id.textView_btp1_name);
         textView_btp2_name = (TextView) findViewById(R.id.textView_btp2_name);
+
+        textView_rtp1_label = (TextView) findViewById(R.id.textView_rtp1_label);
+        textView_rtp2_label = (TextView) findViewById(R.id.textView_rtp2_label);
+        textView_btp1_label = (TextView) findViewById(R.id.textView_btp1_label);
+        textView_btp2_label = (TextView) findViewById(R.id.textView_btp2_label);
 
         button_rtp1_offg = (Button) findViewById(R.id.button_rtp1_offg);
         button_rtp1_defg = (Button) findViewById(R.id.button_rtp1_defg);
@@ -458,7 +484,6 @@ public class GameActivity extends AppCompatActivity {
         return str;
     }
 
-
     public void updateHMIValues(){
 
         textView_red_score.setText(formatInt(GameState.GetRedTeamScore()));
@@ -497,12 +522,12 @@ public class GameActivity extends AppCompatActivity {
     public void EndGameButtonClicked(View view){
 
         if((GameState.GetRedTeamScore() == 10) && (GameState.GetBlueTeamScore() == 10)){
-            showAlertDialog("A tie is not possible. Please fix the score before ending the game.");
+            showAlertDialog("A tied game is not possible.\n\nPlease fix the score before ending the game.");
             return;
         }
 
         if((GameState.GetRedTeamScore() > 10) || (GameState.GetBlueTeamScore() > 10)){
-            showAlertDialog("A score greater than 10 is not possible. Please fix the score before ending the game.");
+            showAlertDialog("A score greater than 10 is not possible.\n\nPlease fix the score before ending the game.");
             return;
         }
 
@@ -548,7 +573,7 @@ public class GameActivity extends AppCompatActivity {
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setTitle("Back button pressed")
-                .setMessage("Are you sure you want to end the game? All progress will be lost.")
+                .setMessage("Are you sure you want to end the game?\n\nAll progress will be lost.")
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
@@ -577,5 +602,4 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    
 }

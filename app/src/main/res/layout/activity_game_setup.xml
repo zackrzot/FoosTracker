@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
+    android:background="@android:color/black"
     tools:context="com.harman.zrzotkiewicz.harmanfoostracker.GameSetupActivity">
 
     <LinearLayout
@@ -24,9 +24,10 @@
             android:id="@+id/textView_rt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10sp"
             android:text="RED TEAM"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/redTeam"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -35,14 +36,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PLAYER 1"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/redTeam"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_rt_p1"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="@android:color/holo_red_dark"
+            android:background="@color/redTeam"
             android:gravity="center" />
 
         <TextView
@@ -50,14 +51,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PLAYER 2"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/redTeam"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_rt_p2"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="@android:color/holo_red_dark" />
+            android:background="@color/redTeam" />
 
         <TextView
             android:id="@+id/textView_bt"
@@ -66,7 +67,7 @@
             android:paddingTop="20sp"
             android:text="BLUE TEAM"
             android:textAlignment="center"
-            android:textColor="?attr/colorPrimary"
+            android:textColor="@color/blueTeam"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -75,36 +76,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PLAYER 1"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/blueTeam"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_bt_p1"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="?attr/colorPrimary" />
+            android:background="@color/blueTeam" />
 
         <TextView
             android:id="@+id/textView1_bt_p2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PLAYER 2"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/blueTeam"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_bt_p2"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="?attr/colorPrimary" />
+            android:background="@color/blueTeam" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/button_kickoff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:background="#ffffff"
         android:text="KICK OFF!" />
 </RelativeLayout>

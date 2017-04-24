@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -32,26 +31,6 @@ public class MainActivity extends AppCompatActivity
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        // Remove title from toolbar
-        toolbar.setTitle("");
-        toolbar.setSubtitle("");
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onFabClicked();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -60,6 +39,21 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentFrame, fragment);
         transaction.commit();
+
+        // Config toolbar
+        setToolbarTitle("");
+    }
+
+    public void setToolbarTitle(String title){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(title);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
     }
 
     // This is called by the startGameFragment when the start game button is pressed
@@ -99,10 +93,6 @@ public class MainActivity extends AppCompatActivity
         }).start();
     }
 
-    public void RefreshFragmentSpecificContent(int fragID){
-
-    }
-
     // This is called by the addNewPlayer fragment when the form is submitted
     @Override
     public void submitNewPlayer(PlayerData playerData) {
@@ -114,42 +104,38 @@ public class MainActivity extends AppCompatActivity
         }
 
         // Check for valid values
+        // If any fields are empty
         if (playerData.AreAnyFieldsEmpty()) {
             // Create a dialog and return if incomplete
-            new AlertDialog.Builder(this)
-                    .setMessage("You must complete all fields to create a new player.")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            return;
-                        }
-                    })
-                    .show();
-        } else {
+            showAlertDialog("You must complete all fields to create a new player.");
+        }
+        // All fields have been completed
+        else {
             // Attempt to create new player
             String result = NewPlayerHelper.CreateNewPlayer(playerData);
+            // No issues, player created
             if (result.equals("null")) {
-                new AlertDialog.Builder(this)
-                        .setMessage("New player created!")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                AddPlayerFragment fragment = (AddPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
-                                fragment.ResetFields();
-                            }
-                        })
-                        .show();
-            } else {
+                showAlertDialog("New player created!");
+                AddPlayerFragment fragment = (AddPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
+                fragment.ResetFields();
+            }
+            // Unable to create the player
+            else {
                 // Alert user of player add failure
-                new AlertDialog.Builder(this)
-                        .setMessage("Unable to create a new player:\n" + result)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .show();
-
+                showAlertDialog("Unable to create a new player:\n" + result);
             }
         }
+    }
+
+    private void showAlertDialog(String message){
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -170,14 +156,19 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (id == R.id.nav_start_game) {
             fragment = new StartGameFragment();
+            setToolbarTitle("");
         } else if (id == R.id.nav_add_player) {
             fragment = new AddPlayerFragment();
+            setToolbarTitle("Add Player");
         }else if (id == R.id.nav_leaderboards) {
             fragment = new LeaderboardsFragment();
+            setToolbarTitle("Leaderboards");
         } else if (id == R.id.nav_global_stats) {
             fragment = new GlobalStatsFragment();
+            setToolbarTitle("Global Stats");
         } else if (id == R.id.nav_player_stats) {
             fragment = new PlayerStatsFragment();
+            setToolbarTitle("Player Stats");
         }
         // Finalize transaction
         transaction.replace(R.id.fragmentFrame, fragment);
@@ -188,4 +179,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

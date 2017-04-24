@@ -73,7 +73,6 @@ public class WebAPIHelper {
         return 0;
     }
 
-
     // Must be ran on own thread
     public static Boolean IsWebAppOnline() {
         try {
@@ -96,7 +95,5 @@ public class WebAPIHelper {
     public static int GetTotalNumberOfGoals(){
         return getIntFromJson(getFromAPI("/Database/PHP/GetTotalGoals.php"),"COUNT(*)");
     }
-
-
 
 }
