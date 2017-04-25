@@ -1,6 +1,8 @@
 package com.harman.zrzotkiewicz.harmanfoostracker;
 
 
+import android.util.Log;
+
 public class PlayerData {
 
     public String PlayerName;
@@ -21,7 +23,7 @@ public class PlayerData {
         if (PlayerName.equals("") || Pin.equals("") ||PinConfirm.equals("") ||
                 DOB.equals("") || Hometown.equals("") || Bio.equals("") ||
                 JerseyNumber.equals("") || Handedness.equals("") ||
-                Height.equals("") || Weight.equals("") || PhotoBlob.equals("")){
+                Height.equals("") || Weight.equals("")){
             return true;
         }
         return false;

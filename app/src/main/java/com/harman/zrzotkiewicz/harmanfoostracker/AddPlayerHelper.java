@@ -10,7 +10,17 @@ public class AddPlayerHelper {
         if(playerData.PlayerName.length() <= 1)
             return "Your name is too short.";
 
+        // Validate name
+        if(playerData.PhotoBlob == "")
+            return "You have to provide a photo.";
 
+        // Validate pin
+        if(playerData.Pin.length() != 4)
+            return "Your PIN must be 4 digits long.";
+
+        // Validate pin
+        if(!playerData.Pin.equals(playerData.PinConfirm))
+            return "Your PINs did not match.";
 
 
 

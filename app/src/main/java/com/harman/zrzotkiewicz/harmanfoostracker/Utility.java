@@ -2,7 +2,6 @@ package com.harman.zrzotkiewicz.harmanfoostracker;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.support.design.widget.Snackbar;
@@ -22,6 +21,10 @@ public class Utility {
     }
 
     public static String BitmapToByteArrayBlobString(Bitmap bitmap){
+        // If no bitmap available
+        if(bitmap == null)
+            return "";
+        // Transform
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
         byte[] bArray = bos.toByteArray();

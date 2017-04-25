@@ -4,14 +4,10 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/global_stats"
-        android:textColor="?attr/actionMenuTextColor"
-        android:textSize="30sp"
-        android:textStyle="bold|italic"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+    <WebView
+        android:id="@+id/webview_globalStats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 </RelativeLayout>

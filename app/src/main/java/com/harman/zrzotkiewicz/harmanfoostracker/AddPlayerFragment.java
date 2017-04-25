@@ -198,6 +198,10 @@ public class AddPlayerFragment extends Fragment {
         spinnerHandedness.setSelection(0);
         editTextHeight.setText("");
         editTextWeight.setText("");
+        editTextPin.setText("");
+        editTextPinConfirm.setText("");
+        playerPhoto.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_camera));
+        playerImage = null;
     }
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {

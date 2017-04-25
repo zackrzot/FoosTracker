@@ -63,6 +63,7 @@
                     android:paddingTop="10sp"
                     android:text="@string/tap_to_take_photo"
                     android:textAlignment="center"
+                    android:textAllCaps="false"
                     android:textColor="@android:color/black"
                     android:textSize="10sp"
                     android:textStyle="italic"
@@ -135,6 +136,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="numberPassword"
+                    android:lineSpacingExtra="8sp"
+                    android:maxLength="4"
                     tools:ignore="LabelFor" />
 
             </LinearLayout>
@@ -170,6 +173,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="numberPassword"
+                    android:lineSpacingExtra="8sp"
+                    android:maxLength="4"
                     tools:ignore="LabelFor" />
 
             </LinearLayout>
@@ -376,6 +381,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="number"
+                    android:maxLength="3"
                     tools:ignore="LabelFor" />
 
             </LinearLayout>
@@ -411,6 +417,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="number"
+                    android:maxLength="3"
                     tools:ignore="LabelFor" />
 
             </LinearLayout>
@@ -419,7 +426,7 @@
                 android:id="@+id/button_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/image_border"
+                android:background="@color/darkOrange"
                 android:text="@string/submit"
                 android:textAllCaps="false" />
 
