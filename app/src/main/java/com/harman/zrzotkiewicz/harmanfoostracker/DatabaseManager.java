@@ -1,25 +1,10 @@
 package com.harman.zrzotkiewicz.harmanfoostracker;
 
 import android.util.Log;
-import android.widget.Toast;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.sql.*;
+
 
 public class DatabaseManager {
 
@@ -36,19 +21,34 @@ public class DatabaseManager {
             int code = connection.getResponseCode();
             if (code == 200)
                 return true;
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             Log.e("ERROR", "Exception caught when checking web address: " + ex);
         }
         return false;
     }
 
-    public static int GetTotalNumberOfGames(){
+    public static int GetTotalNumberOfGames() {
         return 0;
     }
 
-    public static int GetTotalNumberOfGoals(){
+    public static int GetTotalNumberOfGoals() {
         return 0;
+    }
+
+
+    public static void query() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://10.34.150.151:3306/FoosTracker", "zrzot", "harman@123");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from GAMES");
+            while (rs.next())
+                Log.d("[[SQL]]", rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            Log.d("[[SQL ERR]]", e.toString());
+        }
     }
 
 }
+

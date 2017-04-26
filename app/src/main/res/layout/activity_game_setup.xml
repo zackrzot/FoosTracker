@@ -43,7 +43,7 @@
             android:id="@+id/spinner_rt_p1"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="@color/redTeam"
+            android:background="@drawable/player_spinner_red"
             android:gravity="center" />
 
         <TextView
@@ -58,7 +58,7 @@
             android:id="@+id/spinner_rt_p2"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="@color/redTeam" />
+            android:background="@drawable/player_spinner_red" />
 
         <TextView
             android:id="@+id/textView_bt"
@@ -83,7 +83,7 @@
             android:id="@+id/spinner_bt_p1"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="@color/blueTeam" />
+            android:background="@drawable/player_spinner_blue" />
 
         <TextView
             android:id="@+id/textView1_bt_p2"
@@ -97,7 +97,7 @@
             android:id="@+id/spinner_bt_p2"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="@color/blueTeam" />
+            android:background="@drawable/player_spinner_blue" />
 
     </LinearLayout>
 

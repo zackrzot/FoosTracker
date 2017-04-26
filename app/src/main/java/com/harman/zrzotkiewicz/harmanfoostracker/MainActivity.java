@@ -127,6 +127,8 @@ public class MainActivity extends AppCompatActivity
                 fragment.UpdateDisplayStats(DatabaseManager.GetTotalNumberOfGames(), DatabaseManager.GetTotalNumberOfGoals());
             }
         }).start();
+
+        DatabaseManager.query();
     }
     //endregion
 

@@ -55,7 +55,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/redTeam"
             android:orientation="horizontal">
 
             <TextView
@@ -65,8 +64,10 @@
                 android:layout_weight="1"
                 android:text="@string/player_1"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                android:textColor="@color/redTeam"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 tools:ignore="SmallSp" />
 
             <TextView
@@ -76,8 +77,10 @@
                 android:layout_weight="1"
                 android:text="@string/sample_name"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                android:textColor="@color/redTeam"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 tools:ignore="SmallSp" />
 
         </LinearLayout>
@@ -92,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/dialogCustomWindowBackground"
+                android:background="@drawable/score_button"
                 android:text="@string/offensive_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -102,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/startGameFragment"
+                android:background="@drawable/score_button"
                 android:text="@string/defensive_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -112,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/holo_purple"
+                android:background="@drawable/score_button"
                 android:text="@string/own_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -122,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/darkOrange"
+                android:background="@drawable/score_button"
                 android:text="@string/slap_nback"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -177,7 +180,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/redTeam"
             android:orientation="horizontal">
 
             <TextView
@@ -187,8 +189,9 @@
                 android:layout_weight="1"
                 android:text="@string/player_2"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
+                android:textColor="@color/redTeam"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 tools:ignore="SmallSp" />
 
             <TextView
@@ -198,8 +201,10 @@
                 android:layout_weight="1"
                 android:text="@string/sample_name"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:textColor="@color/redTeam"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 tools:ignore="SmallSp" />
 
         </LinearLayout>
@@ -214,7 +219,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/dialogCustomWindowBackground"
+                android:background="@drawable/score_button"
                 android:text="@string/offensive_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -224,7 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/startGameFragment"
+                android:background="@drawable/score_button"
                 android:text="@string/defensive_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -234,7 +239,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/holo_purple"
+                android:background="@drawable/score_button"
                 android:text="@string/own_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -244,7 +249,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/darkOrange"
+                android:background="@drawable/score_button"
                 android:text="@string/slap_nback"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -318,8 +323,10 @@
                 android:layout_weight="1"
                 android:text="@string/player_1"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                android:textColor="@color/blueTeam"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 tools:ignore="SmallSp" />
 
             <TextView
@@ -329,8 +336,10 @@
                 android:layout_weight="1"
                 android:text="@string/sample_name"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                android:textColor="@color/blueTeam"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 tools:ignore="SmallSp" />
 
         </LinearLayout>
@@ -345,7 +354,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/dialogCustomWindowBackground"
+                android:background="@drawable/score_button"
                 android:text="@string/offensive_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -355,7 +364,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/startGameFragment"
+                android:background="@drawable/score_button"
                 android:text="@string/defensive_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -365,7 +374,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/holo_purple"
+                android:background="@drawable/score_button"
                 android:text="@string/own_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -375,7 +384,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/darkOrange"
+                android:background="@drawable/score_button"
                 android:text="@string/slap_nback"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -439,8 +448,10 @@
                 android:layout_weight="1"
                 android:text="@string/player_2"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                android:textColor="@color/blueTeam"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 tools:ignore="SmallSp" />
 
             <TextView
@@ -450,8 +461,10 @@
                 android:layout_weight="1"
                 android:text="@string/sample_name"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/blueTeam"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 tools:ignore="SmallSp" />
 
         </LinearLayout>
@@ -466,7 +479,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/dialogCustomWindowBackground"
+                android:background="@drawable/score_button"
                 android:text="@string/offensive_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -476,7 +489,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/startGameFragment"
+                android:background="@drawable/score_button"
                 android:text="@string/defensive_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -486,7 +499,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/holo_purple"
+                android:background="@drawable/score_button"
                 android:text="@string/own_ngoal"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
@@ -496,7 +509,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/darkOrange"
+                android:background="@drawable/score_button"
                 android:text="@string/slap_nback"
                 android:textSize="10sp"
                 tools:ignore="ButtonStyle,SmallSp" />
