@@ -8,6 +8,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.io.ByteArrayOutputStream;
 import java.net.URLEncoder;
 
@@ -25,20 +27,31 @@ public class Utility {
         // If no bitmap available
         if(bitmap == null)
             return "";
+
         // Transform
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+
         byte[] bArray = bos.toByteArray();
-        String result = "";
-        try{
-            result = new String(bArray, "UTF-8");
-            result = URLEncoder.encode(result, "UTF-8");
-        }
-        catch (Exception ex){
-            Log.d("Error", "Unable to convert byte array to string: " + ex.toString());
-        }
-        //Log.d("IMG", result);
+
+        bArray = encodeUrlSafe(bArray);
+
+        String result = new String(bArray);
+
         return result;
+    }
+
+    public static byte[] encodeUrlSafe(byte[] data) {
+        byte[] encode = Base64.encodeBase64(data);
+        for (int i = 0; i < encode.length; i++) {
+            if (encode[i] == '+') {
+                encode[i] = '-';
+            } else if (encode[i] == '/') {
+                encode[i] = '_';
+            }
+        }
+        return encode;
     }
 
     public static void ShowAlertDialog(final Activity activity, final String message) {
@@ -75,6 +88,12 @@ public class Utility {
         }).start();
     }
 
+    public static String FixInvalidChars(String text){
+        text = text.replace("\\","");
+        text = text.replace("\"","");
+        text = text.replace("'","");
+        return text;
+    }
 
 
 }

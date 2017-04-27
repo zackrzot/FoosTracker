@@ -37,7 +37,6 @@ public class DatabaseManager {
         return 0;
     }
 
-
     public static List<String> GetPlayerNames(){
         final List<String> names = new ArrayList<>();
         Thread t = new Thread(new Runnable() {
@@ -63,7 +62,6 @@ public class DatabaseManager {
         // Return list of names
         return names;
     }
-
 
     public static List<String> GetUsedJerseyNumbers(){
         final List<String> names = new ArrayList<>();
@@ -91,8 +89,10 @@ public class DatabaseManager {
         return names;
     }
 
+    public static Boolean sqlError;
 
     public static Boolean AddNewPlayerToDatabase(final PlayerData playerData){
+        sqlError = false;
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -100,20 +100,32 @@ public class DatabaseManager {
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection con = DriverManager.getConnection("jdbc:mysql://10.34.150.151:3306/FoosTracker", "zrzot", "harman@123");
                     Statement stmt = con.createStatement();
-                    ResultSet rs = stmt.executeQuery("CALL insertPlayer("+playerData.Pin+", \"\", "+playerData.PlayerName+", "+playerData.DOB+", "+playerData.Hometown+", "+playerData.Bio+", "+playerData.JerseyNumber+", "+playerData.Handedness+", "+playerData.Height+", "+playerData.Weight+")");
-                    while (rs.next())
-                        Log.d("[[SQL]]", rs.toString());
+                    String query = "CALL insertPlayer('"+playerData.Pin+"'," +
+                            " '"+playerData.PhotoBlob+"'," +
+                            " '"+Utility.FixInvalidChars(playerData.PlayerName)+"'," +
+                            " '"+playerData.DOB+"'," +
+                            " '"+Utility.FixInvalidChars(playerData.Hometown)+"'," +
+                            " '"+Utility.FixInvalidChars(playerData.Bio)+"'," +
+                            " '"+playerData.JerseyNumber+"'," +
+                            " '"+playerData.Handedness+"'," +
+                            " '"+playerData.Height+"'," +
+                            " '"+playerData.Weight+"');";
+                    Log.d("[[SQL QRY]]", query);
+                    stmt.executeQuery(query);
                     con.close();
                 } catch (Exception e) {
                     Log.d("[[SQL ERR]]", e.toString());
+                    sqlError = true;
                 }
             }});
         // Start thread
         t.start();
         // Wait for thread to finish
         try {  t.join(); }
-        catch (Exception e) { Log.d("[[SQL THREAD ERR]]", e.toString()); }
-        // Return list of names
+        catch (Exception e) { Log.d("[[SQL THREAD ERR]]", e.toString()); sqlError = true; }
+        // Return
+        if(sqlError)
+            return false;
         return true;
     }
 

@@ -153,12 +153,12 @@ public class MainActivity extends AppCompatActivity
             // No issues, player created
             if (result.equals("null")) {
                 if(DatabaseManager.AddNewPlayerToDatabase(playerData)){
-                    Utility.ShowAlertDialog(this, "Database error. Please try again.");
+                    Utility.ShowAlertDialog(this, "New player created!");
                     AddPlayerFragment fragment = (AddPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
                     fragment.ResetFields();
                 }
                 else {
-                    Utility.ShowAlertDialog(this, "New player created!");
+                    Utility.ShowAlertDialog(this, "Database error. Please try again.");
                 }
             }
             // Unable to create the player
