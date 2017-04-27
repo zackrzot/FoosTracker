@@ -176,10 +176,8 @@ public class AddPlayerFragment extends Fragment {
     }
 
     private void populateJerseyNumberSpinner(){
-        List<String> spinnerArray =  new ArrayList<String>();
-        for(int i = 1; i < 100; i++){
-            spinnerArray.add(Integer.toString(i));
-        }
+        // Get available jersey numbers
+        List<String> spinnerArray =  AddPlayerHelper.GetAvailableJerseyNumbers();
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(), android.R.layout.simple_spinner_item, spinnerArray);

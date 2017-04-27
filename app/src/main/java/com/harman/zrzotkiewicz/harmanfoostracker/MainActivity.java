@@ -127,8 +127,6 @@ public class MainActivity extends AppCompatActivity
                 fragment.UpdateDisplayStats(DatabaseManager.GetTotalNumberOfGames(), DatabaseManager.GetTotalNumberOfGoals());
             }
         }).start();
-
-        DatabaseManager.query();
     }
     //endregion
 
@@ -154,9 +152,14 @@ public class MainActivity extends AppCompatActivity
             String result = AddPlayerHelper.CreateNewPlayer(playerData);
             // No issues, player created
             if (result.equals("null")) {
-                Utility.ShowAlertDialog(this, "New player created!");
-                AddPlayerFragment fragment = (AddPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
-                fragment.ResetFields();
+                if(DatabaseManager.AddNewPlayerToDatabase(playerData)){
+                    Utility.ShowAlertDialog(this, "Database error. Please try again.");
+                    AddPlayerFragment fragment = (AddPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentFrame);
+                    fragment.ResetFields();
+                }
+                else {
+                    Utility.ShowAlertDialog(this, "New player created!");
+                }
             }
             // Unable to create the player
             else {

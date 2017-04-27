@@ -4,6 +4,8 @@ import android.util.Log;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DatabaseManager {
@@ -36,19 +38,85 @@ public class DatabaseManager {
     }
 
 
-    public static void query() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://10.34.150.151:3306/FoosTracker", "zrzot", "harman@123");
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from GAMES");
-            while (rs.next())
-                Log.d("[[SQL]]", rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-            con.close();
-        } catch (Exception e) {
-            Log.d("[[SQL ERR]]", e.toString());
-        }
+    public static List<String> GetPlayerNames(){
+        final List<String> names = new ArrayList<>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://10.34.150.151:3306/FoosTracker", "zrzot", "harman@123");
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery("select NAME from PLAYERS");
+                    while (rs.next())
+                        names.add(rs.getString(1));
+                    con.close();
+                } catch (Exception e) {
+                    Log.d("[[SQL ERR]]", e.toString());
+                }
+            }});
+        // Start thread
+        t.start();
+        // Wait for thread to finish
+        try {  t.join(); }
+        catch (Exception e) { Log.d("[[SQL THREAD ERR]]", e.toString()); }
+        // Return list of names
+        return names;
     }
+
+
+    public static List<String> GetUsedJerseyNumbers(){
+        final List<String> names = new ArrayList<>();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://10.34.150.151:3306/FoosTracker", "zrzot", "harman@123");
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery("select JERSEY from PLAYERS");
+                    while (rs.next())
+                        names.add(rs.getString(1));
+                    con.close();
+                } catch (Exception e) {
+                    Log.d("[[SQL ERR]]", e.toString());
+                }
+            }});
+        // Start thread
+        t.start();
+        // Wait for thread to finish
+        try {  t.join(); }
+        catch (Exception e) { Log.d("[[SQL THREAD ERR]]", e.toString()); }
+        // Return list of names
+        return names;
+    }
+
+
+    public static Boolean AddNewPlayerToDatabase(final PlayerData playerData){
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://10.34.150.151:3306/FoosTracker", "zrzot", "harman@123");
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery("CALL insertPlayer("+playerData.Pin+", \"\", "+playerData.PlayerName+", "+playerData.DOB+", "+playerData.Hometown+", "+playerData.Bio+", "+playerData.JerseyNumber+", "+playerData.Handedness+", "+playerData.Height+", "+playerData.Weight+")");
+                    while (rs.next())
+                        Log.d("[[SQL]]", rs.toString());
+                    con.close();
+                } catch (Exception e) {
+                    Log.d("[[SQL ERR]]", e.toString());
+                }
+            }});
+        // Start thread
+        t.start();
+        // Wait for thread to finish
+        try {  t.join(); }
+        catch (Exception e) { Log.d("[[SQL THREAD ERR]]", e.toString()); }
+        // Return list of names
+        return true;
+    }
+
 
 }
 

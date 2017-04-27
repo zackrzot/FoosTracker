@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.net.URLEncoder;
 
 public class Utility {
 
@@ -31,11 +32,12 @@ public class Utility {
         String result = "";
         try{
             result = new String(bArray, "UTF-8");
+            result = URLEncoder.encode(result, "UTF-8");
         }
         catch (Exception ex){
             Log.d("Error", "Unable to convert byte array to string: " + ex.toString());
         }
-        Log.d("IMG", result);
+        //Log.d("IMG", result);
         return result;
     }
 
@@ -72,5 +74,7 @@ public class Utility {
             }
         }).start();
     }
+
+
 
 }

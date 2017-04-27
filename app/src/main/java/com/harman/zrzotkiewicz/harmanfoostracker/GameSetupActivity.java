@@ -135,14 +135,11 @@ public class GameSetupActivity extends AppCompatActivity {
     }
 
     private  void populatePlayerSpinners(){
-        List<String> spinnerArray =  new ArrayList<String>();
+        List<String> spinnerArray =  new ArrayList<>();
         spinnerArray.add("No Player");
-        spinnerArray.add("Zack");
-        spinnerArray.add("Adam");
-        spinnerArray.add("Kelly");
-        spinnerArray.add("Chad");
-        spinnerArray.add("Nancy");
 
+        // Add all players in DB
+        spinnerArray.addAll(DatabaseManager.GetPlayerNames());
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
