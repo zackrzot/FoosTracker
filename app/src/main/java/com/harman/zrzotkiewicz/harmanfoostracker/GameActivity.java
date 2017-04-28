@@ -29,9 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView textView_rtp1_name;
     private TextView textView_rtp2_name;
 
-    private TextView textView_rtp1_label;
     private TextView textView_rtp2_label;
-    private TextView textView_btp1_label;
     private TextView textView_btp2_label;
 
     private TextView textView_btp1_name;
@@ -106,18 +104,18 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateFullHMI(){
+        textView_rtp1_name.setText(GameState.RTP1.PlayerName);
+        textView_btp1_name.setText(GameState.BTP1.PlayerName);
 
-        textView_rtp1_name.setText(GameState.GetRTP1Name());
-        textView_rtp2_name.setText(GameState.GetRTP2Name());
-        textView_btp1_name.setText(GameState.GetBTP1Name());
-        textView_btp2_name.setText(GameState.GetBTP2Name());
-
-        if(GameState.GetRTP2Name()=="No Player")
+        if(GameState.RTP2 == null)
             disableRTP2();
+        else
+            textView_rtp2_name.setText(GameState.RTP2.PlayerName);
 
-        if(GameState.GetBTP2Name()=="No Player")
+        if(GameState.BTP2 == null)
             disableBTP2();
-
+        else
+            textView_btp2_name.setText(GameState.BTP2.PlayerName);
     }
 
     private void disableRTP2(){
@@ -162,9 +160,7 @@ public class GameActivity extends AppCompatActivity {
         textView_btp1_name = (TextView) findViewById(R.id.textView_btp1_name);
         textView_btp2_name = (TextView) findViewById(R.id.textView_btp2_name);
 
-        textView_rtp1_label = (TextView) findViewById(R.id.textView_rtp1_label);
         textView_rtp2_label = (TextView) findViewById(R.id.textView_rtp2_label);
-        textView_btp1_label = (TextView) findViewById(R.id.textView_btp1_label);
         textView_btp2_label = (TextView) findViewById(R.id.textView_btp2_label);
 
         button_rtp1_offg = (Button) findViewById(R.id.button_rtp1_offg);
@@ -214,26 +210,29 @@ public class GameActivity extends AppCompatActivity {
     public void SetListeners(){
 
         //region RTP1 Listeners
-        button_rtp1_offg.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        GameState.AddRTP1OffG();
-                        updateHMIValues();
-                    }
+        button_rtp1_offg.setOnClickListener(
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GameState.RTP1.AddOffGoal();
+                    updateHMIValues();
                 }
-        );
-        button_rtp1_offg.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                GameState.SubRTP1OffG();
-                updateHMIValues();
-                return true;
             }
-        });
+        );
+        button_rtp1_offg.setOnLongClickListener(
+            new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    GameState.RTP1.SubOffGoal();
+                    updateHMIValues();
+                    return true;
+                }
+            }
+        );
         button_rtp1_defg.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                    GameState.AddRTP1DefG();
+                        GameState.RTP1.AddDefGoal();
                     updateHMIValues();
                     }
                 }
@@ -241,7 +240,7 @@ public class GameActivity extends AppCompatActivity {
         button_rtp1_defg.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubRTP1DefG();
+                GameState.RTP1.SubDefGoal();
                 updateHMIValues();
                 return true;
             }
@@ -250,32 +249,31 @@ public class GameActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        GameState.AddRTP1OwnG();
-                        updateHMIValues();
+                    GameState.RTP1.AddOwnGoal();
+                    updateHMIValues();
                     }
                 }
         );
         button_rtp1_owng.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubRTP1OwnG();
+                GameState.RTP1.SubOwnGoal();
                 updateHMIValues();
                 return true;
             }
         });
-        button_rtp1_slap.setOnClickListener(
-                new View.OnClickListener() {
+        button_rtp1_slap.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                        GameState.AddRTP1Slap();
-                        updateHMIValues();
+                            GameState.RTP1.AddSlap();
+                            updateHMIValues();
                     }
                 }
         );
         button_rtp1_slap.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubRTP1Slap();
+                GameState.RTP1.SubSlap();
                 updateHMIValues();
                 return true;
             }

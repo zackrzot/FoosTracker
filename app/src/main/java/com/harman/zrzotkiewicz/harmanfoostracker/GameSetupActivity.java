@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.harman.zrzotkiewicz.harmanfoostracker.objects.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,21 +49,19 @@ public class GameSetupActivity extends AppCompatActivity {
     }
 
     public void KickOffButtonClicked(View view){
-
         if(validatePlayerSelection()) {
+            GameState.RTP1 = new Player(Player.TEAM.RED, spinnerRTP1.getSelectedItem().toString());
+            if(spinnerRTP2.getSelectedItem().toString() != "No Player")
+                GameState.RTP2 = new Player(Player.TEAM.RED, spinnerRTP2.getSelectedItem().toString());
 
-            // Set game values
-            GameState.SetRTP1Name(spinnerRTP1.getSelectedItem().toString());
-            GameState.SetRTP2Name(spinnerRTP2.getSelectedItem().toString());
-            GameState.SetBTP1Name(spinnerBTP1.getSelectedItem().toString());
-            GameState.SetBTP2Name(spinnerBTP2.getSelectedItem().toString());
+            GameState.BTP1 = new Player(Player.TEAM.BLUE, spinnerBTP1.getSelectedItem().toString());
+            if(spinnerRTP2.getSelectedItem().toString() != "No Player")
+                GameState.BTP2 = new Player(Player.TEAM.BLUE, spinnerBTP2.getSelectedItem().toString());
 
             GameState.SetStartTime();
-            GameState.SetGameActive();
 
             startGameActivity();
         }
-
     }
 
     private Boolean validatePlayerSelection(){
