@@ -11,6 +11,6 @@
     <color name="black">#000000</color>
     <color name="startGameFragment">#2e7d32</color>
     <color name="harmanLogo">#283593</color>
-    <color name="gameSetupBackground">#424242</color>
+    <color name="gameSetupBackground">#757575</color>
     <color name="darkOrange">#ef6c00</color>
 </resources>

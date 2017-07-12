@@ -22,6 +22,8 @@ public class Player {
         PlayerTeam = playerTeam;
         PlayerName = playerName;
         OffGoals = new ArrayList<>();
+        DefGoals = new ArrayList<>();
+        OwnGoals = new ArrayList<>();
     }
 
     //region Slaps
@@ -34,7 +36,7 @@ public class Player {
             Slaps--;
     }
 
-    public int GetSlap(){
+    public int GetNumSlaps(){
         return Slaps;
     }
     //endregion

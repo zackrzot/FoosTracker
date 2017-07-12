@@ -20,7 +20,6 @@ public class GameState {
     //endregion
 
 
-
     public static void ResetGameState(){
         Log.d("INFO", "Resetting game state.");
         StartTime = null;
@@ -59,6 +58,34 @@ public class GameState {
         EndTime = sdf.format(c.getTime());
     }
 
+    public static int GetRedTeamScore(){
+        int score = 0;
+        score += (RTP1.GetNumOffGoals() + RTP1.GetNumDefGoals());
 
+        if(RTP2 != null)
+            score += (RTP2.GetNumOffGoals() + RTP2.GetNumDefGoals());
+
+        score += BTP1.GetNumOwnGoals();
+
+        if(BTP2 != null)
+            score += BTP2.GetNumOwnGoals();
+
+        return score;
+    }
+
+    public static int GetBlueTeamScore(){
+        int score = 0;
+        score += (BTP1.GetNumOffGoals() + BTP1.GetNumDefGoals());
+
+        if(BTP2 != null)
+            score += (BTP2.GetNumOffGoals() + BTP2.GetNumDefGoals());
+
+        score += RTP1.GetNumOwnGoals();
+
+        if(RTP2 != null)
+            score += RTP2.GetNumOwnGoals();
+
+        return score;
+    }
 
 }

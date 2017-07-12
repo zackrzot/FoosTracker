@@ -2,17 +2,12 @@ package com.harman.zrzotkiewicz.harmanfoostracker;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.annotation.BoolRes;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
@@ -210,33 +205,31 @@ public class GameActivity extends AppCompatActivity {
     public void SetListeners(){
 
         //region RTP1 Listeners
-        button_rtp1_offg.setOnClickListener(
-            new View.OnClickListener() {
+        button_rtp1_offg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    GameState.RTP1.AddOffGoal();
-                    updateHMIValues();
-                }
+                GameState.RTP1.AddOffGoal();
+                updateHMIValues();
             }
-        );
-        button_rtp1_offg.setOnLongClickListener(
-            new View.OnLongClickListener() {
+        });
+
+        button_rtp1_offg.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    GameState.RTP1.SubOffGoal();
-                    updateHMIValues();
-                    return true;
-                }
+                GameState.RTP1.SubOffGoal();
+                updateHMIValues();
+                return true;
             }
-        );
+        });
+
         button_rtp1_defg.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GameState.RTP1.AddDefGoal();
-                    updateHMIValues();
-                    }
-                }
-        );
+                GameState.RTP1.AddDefGoal();
+                updateHMIValues();
+            }
+        });
+
         button_rtp1_defg.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -245,15 +238,15 @@ public class GameActivity extends AppCompatActivity {
                 return true;
             }
         });
-        button_rtp1_owng.setOnClickListener(
-                new View.OnClickListener() {
+
+        button_rtp1_owng.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    GameState.RTP1.AddOwnGoal();
-                    updateHMIValues();
-                    }
-                }
-        );
+            GameState.RTP1.AddOwnGoal();
+            updateHMIValues();
+            }
+        });
+
         button_rtp1_owng.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -262,14 +255,15 @@ public class GameActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         button_rtp1_slap.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            GameState.RTP1.AddSlap();
-                            updateHMIValues();
-                    }
-                }
-        );
+                GameState.RTP1.AddSlap();
+                updateHMIValues();
+            }
+        });
+
         button_rtp1_slap.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -284,65 +278,66 @@ public class GameActivity extends AppCompatActivity {
         button_rtp2_offg.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    GameState.AddRTP2OffG();
-                                                    updateHMIValues();
-                                                }
-                                            }
-        );
+                GameState.RTP2.AddOffGoal();
+                updateHMIValues();
+            }
+        });
+
         button_rtp2_offg.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubRTP2OffG();
+                GameState.RTP2.SubOffGoal();
                 updateHMIValues();
                 return true;
             }
         });
+
         button_rtp2_defg.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    GameState.AddRTP2DefG();
-                                                    updateHMIValues();
-                                                }
-                                            }
-        );
+                GameState.RTP2.AddDefGoal();
+                updateHMIValues();
+            }
+        });
+
         button_rtp2_defg.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubRTP2DefG();
+                GameState.RTP2.SubDefGoal();
                 updateHMIValues();
                 return true;
             }
         });
-        button_rtp2_owng.setOnClickListener(
-                new View.OnClickListener() {
+
+        button_rtp2_owng.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GameState.AddRTP2OwnG();
-                        updateHMIValues();
-                    }
-                }
-        );
+                GameState.RTP2.AddOwnGoal();
+                updateHMIValues();
+            }
+        });
+
         button_rtp2_owng.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubRTP2OwnG();
+                GameState.RTP2.SubOwnGoal();
                 updateHMIValues();
                 return true;
             }
         });
-        button_rtp2_slap.setOnClickListener(
-                new View.OnClickListener() {
+
+        button_rtp2_slap.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GameState.AddRTP2Slap();
-                        updateHMIValues();
-                    }
-                }
-        );
+                GameState.RTP2.AddSlap();
+                updateHMIValues();
+            }
+        });
+
         button_rtp2_slap.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubRTP2Slap();
+                GameState.RTP2.SubSlap();
                 updateHMIValues();
                 return true;
             }
@@ -353,65 +348,66 @@ public class GameActivity extends AppCompatActivity {
         button_btp1_offg.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    GameState.AddBTP1OffG();
-                                                    updateHMIValues();
-                                                }
-                                            }
-        );
+                GameState.BTP1.AddOffGoal();
+                updateHMIValues();
+            }
+        });
+
         button_btp1_offg.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubBTP1OffG();
+                GameState.BTP1.SubOffGoal();
                 updateHMIValues();
                 return true;
             }
         });
+
         button_btp1_defg.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    GameState.AddBTP1DefG();
-                                                    updateHMIValues();
-                                                }
-                                            }
-        );
+                GameState.BTP1.AddDefGoal();
+                updateHMIValues();
+            }
+        });
+
         button_btp1_defg.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubBTP1DefG();
+                GameState.BTP1.SubDefGoal();
                 updateHMIValues();
                 return true;
             }
         });
-        button_btp1_owng.setOnClickListener(
-                new View.OnClickListener() {
+
+        button_btp1_owng.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GameState.AddBTP1OwnG();
-                        updateHMIValues();
-                    }
-                }
-        );
+                GameState.BTP1.AddOwnGoal();
+                updateHMIValues();
+            }
+        });
+
         button_btp1_owng.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubBTP1OwnG();
+                GameState.BTP1.SubOwnGoal();
                 updateHMIValues();
                 return true;
             }
         });
-        button_btp1_slap.setOnClickListener(
-                new View.OnClickListener() {
+
+        button_btp1_slap.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GameState.AddBTP1Slap();
-                        updateHMIValues();
-                    }
-                }
-        );
+                GameState.BTP1.AddSlap();
+                updateHMIValues();
+            }
+        });
+
         button_btp1_slap.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubBTP1Slap();
+                GameState.BTP1.SubSlap();
                 updateHMIValues();
                 return true;
             }
@@ -422,65 +418,66 @@ public class GameActivity extends AppCompatActivity {
         button_btp2_offg.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    GameState.AddBTP2OffG();
-                                                    updateHMIValues();
-                                                }
-                                            }
-        );
+                GameState.BTP2.AddOffGoal();
+                updateHMIValues();
+            }
+        });
+
         button_btp2_offg.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubBTP2OffG();
+                GameState.BTP2.SubOffGoal();
                 updateHMIValues();
                 return true;
             }
         });
+
         button_btp2_defg.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    GameState.AddBTP2DefG();
-                                                    updateHMIValues();
-                                                }
-                                            }
-        );
+                GameState.BTP2.AddDefGoal();
+                updateHMIValues();
+            }
+        });
+
         button_btp2_defg.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubBTP2DefG();
+                GameState.BTP2.SubDefGoal();
                 updateHMIValues();
                 return true;
             }
         });
-        button_btp2_owng.setOnClickListener(
-                new View.OnClickListener() {
+
+        button_btp2_owng.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GameState.AddBTP2OwnG();
-                        updateHMIValues();
-                    }
-                }
-        );
+                GameState.BTP2.AddOwnGoal();
+                updateHMIValues();
+            }
+        });
+
         button_btp2_owng.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubBTP2OwnG();
+                GameState.BTP2.SubOwnGoal();
                 updateHMIValues();
                 return true;
             }
         });
-        button_btp2_slap.setOnClickListener(
-                new View.OnClickListener() {
+
+        button_btp2_slap.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GameState.AddBTP2Slap();
-                        updateHMIValues();
-                    }
-                }
-        );
+                GameState.BTP2.AddSlap();
+                updateHMIValues();
+            }
+        });
+
         button_btp2_slap.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                GameState.SubBTP2Slap();
+                GameState.BTP2.SubSlap();
                 updateHMIValues();
                 return true;
             }
@@ -501,25 +498,29 @@ public class GameActivity extends AppCompatActivity {
         textView_red_score.setText(formatInt(GameState.GetRedTeamScore()));
         textView_blue_score.setText(formatInt(GameState.GetBlueTeamScore()));
 
-        textView_rtp1_offg.setText(formatInt(GameState.GetRTP1OffG()));
-        textView_rtp1_defg.setText(formatInt(GameState.GetRTP1DefG()));
-        textView_rtp1_owng.setText(formatInt(GameState.GetRTP1OwnG()));
-        textView_rtp1_slap.setText(formatInt(GameState.GetRTP1Slaps()));
+        textView_rtp1_offg.setText(formatInt(GameState.RTP1.GetNumOffGoals()));
+        textView_rtp1_defg.setText(formatInt(GameState.RTP1.GetNumDefGoals()));
+        textView_rtp1_owng.setText(formatInt(GameState.RTP1.GetNumOwnGoals()));
+        textView_rtp1_slap.setText(formatInt(GameState.RTP1.GetNumSlaps()));
 
-        textView_rtp2_offg.setText(formatInt(GameState.GetRTP2OffG()));
-        textView_rtp2_defg.setText(formatInt(GameState.GetRTP2DefG()));
-        textView_rtp2_owng.setText(formatInt(GameState.GetRTP2OwnG()));
-        textView_rtp2_slap.setText(formatInt(GameState.GetRTP2Slaps()));
+        if(GameState.RTP2 != null) {
+            textView_rtp2_offg.setText(formatInt(GameState.RTP2.GetNumOffGoals()));
+            textView_rtp2_defg.setText(formatInt(GameState.RTP2.GetNumDefGoals()));
+            textView_rtp2_owng.setText(formatInt(GameState.RTP2.GetNumOwnGoals()));
+            textView_rtp2_slap.setText(formatInt(GameState.RTP2.GetNumSlaps()));
+        }
 
-        textView_btp1_offg.setText(formatInt(GameState.GetBTP1OffG()));
-        textView_btp1_defg.setText(formatInt(GameState.GetBTP1DefG()));
-        textView_btp1_owng.setText(formatInt(GameState.GetBTP1OwnG()));
-        textView_btp1_slap.setText(formatInt(GameState.GetBTP1Slaps()));
+        textView_btp1_offg.setText(formatInt(GameState.BTP1.GetNumOffGoals()));
+        textView_btp1_defg.setText(formatInt(GameState.BTP1.GetNumDefGoals()));
+        textView_btp1_owng.setText(formatInt(GameState.BTP1.GetNumOwnGoals()));
+        textView_btp1_slap.setText(formatInt(GameState.BTP1.GetNumSlaps()));
 
-        textView_btp2_offg.setText(formatInt(GameState.GetBTP2OffG()));
-        textView_btp2_defg.setText(formatInt(GameState.GetBTP2DefG()));
-        textView_btp2_owng.setText(formatInt(GameState.GetBTP2OwnG()));
-        textView_btp2_slap.setText(formatInt(GameState.GetBTP2Slaps()));
+        if(GameState.BTP2 != null) {
+            textView_btp2_offg.setText(formatInt(GameState.BTP2.GetNumOffGoals()));
+            textView_btp2_defg.setText(formatInt(GameState.BTP2.GetNumDefGoals()));
+            textView_btp2_owng.setText(formatInt(GameState.BTP2.GetNumOwnGoals()));
+            textView_btp2_slap.setText(formatInt(GameState.BTP2.GetNumSlaps()));
+        }
 
         button_end_game.setEnabled(isGameOver());
 

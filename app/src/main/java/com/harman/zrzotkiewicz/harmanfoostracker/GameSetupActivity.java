@@ -1,15 +1,12 @@
 package com.harman.zrzotkiewicz.harmanfoostracker;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.harman.zrzotkiewicz.harmanfoostracker.objects.Player;
 
@@ -51,11 +48,13 @@ public class GameSetupActivity extends AppCompatActivity {
     public void KickOffButtonClicked(View view){
         if(validatePlayerSelection()) {
             GameState.RTP1 = new Player(Player.TEAM.RED, spinnerRTP1.getSelectedItem().toString());
+
             if(spinnerRTP2.getSelectedItem().toString() != "No Player")
                 GameState.RTP2 = new Player(Player.TEAM.RED, spinnerRTP2.getSelectedItem().toString());
 
             GameState.BTP1 = new Player(Player.TEAM.BLUE, spinnerBTP1.getSelectedItem().toString());
-            if(spinnerRTP2.getSelectedItem().toString() != "No Player")
+
+            if(spinnerBTP2.getSelectedItem().toString() != "No Player")
                 GameState.BTP2 = new Player(Player.TEAM.BLUE, spinnerBTP2.getSelectedItem().toString());
 
             GameState.SetStartTime();
