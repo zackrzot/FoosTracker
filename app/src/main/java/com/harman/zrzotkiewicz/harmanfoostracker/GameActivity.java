@@ -1,7 +1,9 @@
 package com.harman.zrzotkiewicz.harmanfoostracker;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -71,6 +73,8 @@ public class GameActivity extends AppCompatActivity {
     private TextView textView_btp2_defg;
     private TextView textView_btp2_owng;
     private TextView textView_btp2_slap;
+
+    public Vibrator vibe;
     //endregion
 
     @Override
@@ -96,6 +100,9 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        // Set up vibrator
+        vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     private void updateFullHMI(){
@@ -494,6 +501,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void updateHMIValues(){
+        vibe.vibrate(100);
 
         textView_red_score.setText(formatInt(GameState.GetRedTeamScore()));
         textView_blue_score.setText(formatInt(GameState.GetBlueTeamScore()));
