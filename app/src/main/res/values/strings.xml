@@ -1,12 +1,8 @@
 <resources>
     <string name="app_name">HARMAN FoosTracker</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="harman">HARMAN</string>
     <string name="foos_tracker">FOOS TRACKER</string>
@@ -28,7 +24,6 @@
         <item>RIGHT</item>
         <item>LEFT</item>
     </string-array>
-
     <string name="title_activity_game">GameActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -41,11 +36,11 @@
     <string name="_00">00</string>
     <string name="sample_name">sample name</string>
     <string name="hold_button_to_subtract_score">Hold button to subtract score.</string>
-    <string name="offensive_ngoal">OFFENSIVE\nGOAL</string>
-    <string name="defensive_ngoal">DEFENSIVE\nGOAL</string>
+    <string name="offensive_ngoal">OFF</string>
+    <string name="defensive_ngoal">DEF</string>
     <string name="end_game">END GAME</string>
-    <string name="own_ngoal">OWN\nGOAL</string>
-    <string name="slap_nback">SLAP\nBACK</string>
+    <string name="own_ngoal">OWN</string>
+    <string name="slap_nback">SLAP</string>
     <string name="biography">Biography</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="hometown">Hometown</string>
